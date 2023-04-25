@@ -24,6 +24,7 @@ def txt_to_mp3_offline(file_path, language='ru', sex='male'):
             tts.setProperty('rate', 130)
         else:
             tts.setProperty('voice', "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\TokenEnums\RHVoice\Tatiana")
+            tts.setProperty('rate', 115)
     elif language == 'en':
         if sex == 'male':
             pass
@@ -49,8 +50,8 @@ def main():
     if Path(file_path).is_file():
         if Path(file_path).suffix == '.txt':
             #txt_to_mp3_online(file_path)
-            #txt_to_mp3_offline(file_path, sex='female')
-            txt_to_mp3_offline(file_path)
+            txt_to_mp3_offline(file_path, sex='female')
+            #txt_to_mp3_offline(file_path)
         elif Path(file_path).suffix == '.pdf':
             pdf_to_mp3(file_path)
     else:
