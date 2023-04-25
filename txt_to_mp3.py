@@ -31,7 +31,7 @@ def txt_to_mp3_offline(file_path, language='ru', sex='male'):
         else:
             tts.setProperty('voice', "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0")
 
-    tts.save_to_file(text, Path(file_path).stem + '.mp3')
+    tts.save_to_file(text, str(Path(file_path).with_suffix('.mp3'))) 
     tts.runAndWait()
     
 
