@@ -1,7 +1,10 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import fake_useragent
+import urllib.request
 from PyBitTorrent import TorrentClient
+from txt_to_mp3 import *
+from config import *
 
 
 def avidreaders_parser(user_search): # парсинг сайта авидридерс
@@ -42,11 +45,17 @@ def tululu_parser(user_search): # парсинг сайта тулулу (мно
 
     # ссылка на скачивание txt
     download_url = 'https://tululu.org/txt.php?id=' + book_url.split('/b')[1].replace('/', '')
+    # скачивание txt
+    response = requests.get(download_url)
+    book_dir = "{}/{}.txt".format(lib_path, book_name.replace(" ", ""))
+    open(book_dir, "wb").write(response.content)
+    txt_to_mp3_offline(book_dir)
     
-
+'''
 def torrent_downloader(path):
     client = TorrentClient(path, output_dir=path[:path.rfind('/')])
     client.start()
+'''
 
 if __name__ == "__main__":
-    tululu_parser("Красавица и чудовище Макбейн Эд")
+    tululu_parser("Бархатный сезон брэдбери")
