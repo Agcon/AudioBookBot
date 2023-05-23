@@ -36,11 +36,9 @@ def tululu_parser(user_search): # парсинг сайта тулулу (мно
         pass # нужно конкретизировать поиск, т.к. слишком много результатов
 
     books_names = [book.text for book in books] # список названий книг
+    return books_names, books
 
-    # TODO: подключить бота для выбора книги из списка
-    book_name = books_names[0] # название выбранной книги
-
-    # ссылка на книгу
+def get_mp3(book_name, books_names, books):
     book_url = "tululu.org" + books[books_names.index(book_name)].find('a').get('href')
 
     # ссылка на скачивание txt
