@@ -12,4 +12,16 @@ setup(
     description='Converts text from books into audio',
     packages=['main'],
     install_requires=requirements,
+
+    extras_require={
+        'docs': [
+            'sphinx',
+            'sphinx_rtd_theme'
+        ]
+    },
+    entry_points={
+        'console_scripts': [
+            'audiobookbot = main.audiobookbot:main'
+        ]
+    }
 )
