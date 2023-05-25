@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup as bs
 import requests
 import fake_useragent
 import urllib.request
-from PyBitTorrent import TorrentClient
 from txt_to_mp3 import *
 from config import *
 
@@ -47,13 +46,11 @@ def get_mp3(book_name, books_names, books):
     response = requests.get(download_url)
     book_dir = "{}/{}.txt".format(lib_path, book_name.replace(" ", ""))
     open(book_dir, "wb").write(response.content)
+    print(book_dir)
     txt_to_mp3_offline(book_dir)
     
-'''
-def torrent_downloader(path):
-    client = TorrentClient(path, output_dir=path[:path.rfind('/')])
-    client.start()
-'''
+    
+    
 
 if __name__ == "__main__":
     tululu_parser("Бархатный сезон брэдбери")
