@@ -1,13 +1,13 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import fake_useragent
-import urllib.request
 from txt_to_mp3 import *
 from config import *
 
 
 def avidreaders_parser(user_search): # парсинг сайта авидридерс
     pass
+
 
 def tululu_parser(user_search): # парсинг сайта тулулу (много новых книг)
     session = requests.Session()
@@ -37,6 +37,7 @@ def tululu_parser(user_search): # парсинг сайта тулулу (мно
     books_names = [book.text for book in books] # список названий книг
     return books_names, books
 
+
 def get_mp3(book_name, books_names, books):
     book_url = "tululu.org" + books[books_names.index(book_name)].find('a').get('href')
 
@@ -46,10 +47,8 @@ def get_mp3(book_name, books_names, books):
     response = requests.get(download_url)
     book_dir = "{}/{}.txt".format(lib_path, book_name.replace(" ", ""))
     open(book_dir, "wb").write(response.content)
-    print(book_dir)
     txt_to_mp3_offline(book_dir)
-    
-    
+    return book_dir.replace(".txt", ".mp3")
     
 
 if __name__ == "__main__":

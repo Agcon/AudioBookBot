@@ -35,7 +35,6 @@ def txt_to_mp3_offline(file_path, language='ru', sex='male'):
     tts.runAndWait()
     
 
-
 def pdf_to_mp3(file_path, language='ru'):
     with pdfplumber.PDF(open(file=file_path, mode='rb')) as pdf:
         text = [page.extract_text() for page in pdf.pages]
@@ -49,9 +48,7 @@ def main():
     file_path = input()
     if Path(file_path).is_file():
         if Path(file_path).suffix == '.txt':
-            #txt_to_mp3_online(file_path)
             txt_to_mp3_offline(file_path, sex='female')
-            #txt_to_mp3_offline(file_path)
         elif Path(file_path).suffix == '.pdf':
             pdf_to_mp3(file_path)
     else:
